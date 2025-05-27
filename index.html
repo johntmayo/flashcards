@@ -472,8 +472,9 @@
                 this.el.totalCards.textContent = this.filteredCards.length;
                 this.el.viewedCount.textContent = this.viewedCards.size;
                 
-                this.el.prevBtn.disabled = this.currentIndex === 0 || this.isNavigating;
-                this.el.nextBtn.disabled = this.currentIndex >= this.filteredCards.length - 1 || this.isNavigating;
+                // Only disable based on position, not navigation state (navigation methods handle their own blocking)
+                this.el.prevBtn.disabled = this.currentIndex === 0;
+                this.el.nextBtn.disabled = this.currentIndex >= this.filteredCards.length - 1;
                 
                 const progress = this.filteredCards.length ? 
                     ((this.currentIndex + 1) / this.filteredCards.length) * 100 : 0;
